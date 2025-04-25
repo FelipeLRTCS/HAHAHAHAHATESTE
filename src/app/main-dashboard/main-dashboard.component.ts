@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
+import { Subject, takeUntil } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
@@ -23,11 +23,55 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
     DashboardComponent
   ]
 })
-export class MainDashboardComponent {
-  private breakpointObserver = inject(BreakpointObserver);
+export class MainDashboardComponent implements OnInit {
+
+  constructor(private breakpointObserver: BreakpointObserver){
+  }
+
+  destroyed = new Subject<void>();
+  currentScreenSize!: string;
+  column!:number;
+
+  ngOnInit() {
+    this.breakpointObserver
+    .observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small,
+      Breakpoints.Medium,
+      Breakpoints.Large,
+      Breakpoints.XLarge,
+    ])
+    .pipe(takeUntil(this.destroyed))
+    .subscribe(result => {
+        if (result.matches) {
+          if (result.breakpoints[Breakpoints.XSmall]) {
+            this.currentScreenSize = 'XSmall';
+            this.column=1;
+            console.log("merda");
+          }
+          if (result.breakpoints[Breakpoints.Small]) {
+            this.currentScreenSize = 'Small';
+            this.column=1;
+            console.log("merda");
+          }
+          if (result.breakpoints[Breakpoints.Medium]) {
+            this.column=2;
+            this.currentScreenSize = 'Medium';console.log("merda");
+          }
+          if (result.breakpoints[Breakpoints.Large]) {
+            this.column=2;
+            this.currentScreenSize = 'Large';console.log("merda");
+          }
+          if (result.breakpoints[Breakpoints.XLarge]) {
+            this.column=2;
+            this.currentScreenSize = 'XLarge';console.log("merda");
+          }
+        }
+      });
+  }
 
   /** Based on the screen size, switch from standard to one column per row */
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+  /*cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
         return [
@@ -45,5 +89,5 @@ export class MainDashboardComponent {
         { title: 'Card 4', cols: 1, rows: 1 }
       ];
     })
-  );
+  );*/
 }

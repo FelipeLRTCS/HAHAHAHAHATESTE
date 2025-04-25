@@ -5,11 +5,15 @@
 .dashboard-card {
   position: absolute;
   width: 95%;
-  height: 50%;
+  height: 375px; //unidade absoluta pra deixar o card com o tamanho apropriado pra tile
   top: 15px;
   left: 15px;
   right: 15px;
   bottom: 15px;
+}
+
+.teste2{
+  height: 500px;
 }
 
 .dashboard-card-content {
