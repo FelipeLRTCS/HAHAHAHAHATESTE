@@ -1,0 +1,41 @@
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  background-color: azure;
+}
+.teste{
+  position: absolute;
+  padding-left: 80%;
+  top: 12px;
+  left: 5px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+  padding: 20px 12px;
+  padding-top: 30px;
+  padding-bottom: 0px;
+  text-align: left;
+}
+
+.text{
+  color: aqua;
+}
+
+.div-text{
+  font-size: xx-large;
+}
+
+.footer-shit{
+  padding: 5px 12px; /* Match card padding */
+  /* Add border, background, flex alignment etc. as needed */
+  display: flex;       /* Example: Use flexbox for alignment */
+}
+

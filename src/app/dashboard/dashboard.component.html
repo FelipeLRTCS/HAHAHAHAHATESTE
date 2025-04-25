@@ -1,0 +1,22 @@
+<div class="grid-container">
+  <mat-grid-list cols="2" rowHeight="150px">
+    @for (card of cards | async; track card) {
+      <mat-grid-tile [colspan]="card.cols" [rowspan]="card.rows">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title class="text">
+              {{card.title}}
+            </mat-card-title>
+            <mat-icon class = "teste">A</mat-icon>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div class="text div-text">{{card.description}}</div>
+          </mat-card-content>
+          <mat-card-footer class="footer-shit">
+            {{card.footer}}
+          </mat-card-footer>
+        </mat-card>
+      </mat-grid-tile>
+    }
+  </mat-grid-list>
+</div>
